@@ -1,0 +1,390 @@
+\documentclass[UTF8]{ctexart}
+%\setmainfont{TeX Gyre Termes} %新增的
+%\usepackage{mathspec}
+%\setmathsfont(Latin)[ItalicFont=*]{Neo Euler}
+
+\setmainfont{Times New Roman}
+%\usepackage{mathtime}
+\title{概率统计公式汇总}
+\author{\quad 张健然 }
+\date{\today}
+\usepackage{amsmath,amsfonts,graphicx,algorithm,algorithmic,subfigure,gensymb,enumitem,longtable,booktabs,multirow,diagbox,makecell,tabularx}
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\usepackage{amssymb} %\geqslant 8$ & $\leqslant
+\numberwithin{equation}{subsection}%公式按章节编号,amsmath
+%\numberwithin{figure}{section}%图表按章节编号
+\usepackage{minted}
+\usemintedstyle{manni}
+% 页边距
+\usepackage{geometry}
+\usepackage{indentfirst}
+\pagestyle{plain}	% 去除页眉
+\geometry{a4paper,scale=0.8}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 设置页面的环境,a4纸张大小，左右上下边距信息
+%\newgeometry{left=31.8mm,right=31.8mm,top=25.4mm,bottom=25.4mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+	\maketitle
+	\tableofcontents  % 生成目录
+	\section{Overview}
+	\section{Probabily}
+	\subsection{The Law of Total Probability}
+	\begin{Large}
+		\begin{equation}
+			P(B)=P(B|A_1)P(A_1)+\cdots+P(B|A_k)P(A_k)
+		\end{equation}		
+	\end{Large}
+    \subsection{Bay's Theorm}
+    \begin{Large}
+    	\begin{equation}
+    		P(A_j|B)=\frac{P(A_j)\cap B}{P(B)}=\frac{P(B|A_j)\cdot P(A_j)}{\sum_{i=1}^{k}P(B|A_i)\cdot P(A_i)}
+    	\end{equation}		
+    \end{Large}
+	\section{Discrete rv}
+	\subsection{Binomial distribution}
+	\begin{Large}
+		\begin{equation}
+			b(x;n,p)=\begin{cases}
+				\left( \begin{array}{c}
+							n\\
+							x\\
+			           \end{array} \right) p^x(1-p)^{n-x}\\
+		          	\quad 0\\
+                	\end{cases}
+		\end{equation}		
+	\end{Large}
+	\begin{Large}
+		\begin{equation}
+			P(X\leqslant x)=B(x;n,p)=\sum_{y=0}^{x}b(y;n,p)
+		\end{equation}		
+	\end{Large}
+	\subsection{Hypergeometric distribution}
+	\begin{Large}
+		\begin{equation}
+			P(X=x)=h(x;n,M,N)=\frac{
+				\left( \begin{array}{c}
+					M\\
+					x\\
+				\end{array} \right)
+				\left( \begin{array}{c}
+					N-M\\
+					n-x\\
+				\end{array} \right)
+				}{
+				\left( \begin{array}{c}
+					N\\
+					n\\
+				\end{array} \right)
+			     }		     
+	\end{equation}		
+	\end{Large}
+	\begin{Large}
+		\begin{equation}
+		E(X) = n\cdot \frac{M}{N}
+		\end{equation}		
+	\end{Large}
+	\begin{Large}
+		\begin{equation}
+		V(X) = \left( \frac{N-n}{N-1} \right) \cdot n \cdot \frac{M}{N}\cdot\left( 1- \frac{M}{N} \right)
+		\end{equation}		
+	\end{Large}
+	\subsection{Negative Binomial distribution}
+	\begin{Large}
+		\begin{equation}
+			nb(x;r,p)
+			\left( \begin{array}{c}
+				x+r-1\\
+				r-1\\
+			\end{array} \right)p^{r}(1-p)^x
+		\end{equation}		
+	\end{Large}
+	\begin{Large}
+		\begin{equation}
+			E(X) = \frac{r(1-p)}{p}
+		\end{equation}		
+	\end{Large}
+	\begin{Large}
+		\begin{equation}
+			V(X) = \frac{r(1-p)}{p^2}
+		\end{equation}		
+	\end{Large}
+	\subsection{Possion distribution}
+	\begin{Large}
+		\begin{equation}
+		p(x;\lambda)=\frac{e^{-\lambda}\lambda^x}{x!}
+		\end{equation}		
+	\end{Large}
+	\begin{Large}
+		\begin{equation}
+			E(X) = V(X)=\lambda
+		\end{equation}		
+	\end{Large}
+    \section{Continous rv}
+    \subsection{Uniform distribution}
+
+	\subsection{Normal distribution}
+	\begin{LARGE}
+		\begin{equation}
+			f(x;\mu, \sigma)=\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu)^2}{2\sigma^2}}
+		\end{equation}		
+	\end{LARGE}
+	\begin{LARGE}
+		\begin{equation}
+			f(z;0, 1)=\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-z^2}{2}}
+		\end{equation}		
+	\end{LARGE}
+    \subsection{Exponential distribution}
+    \begin{Large}
+    	\begin{equation}
+    		f(x;\lambda)=\begin{cases}
+    			\lambda e^{-\lambda x}\qquad x\geqslant 0\\
+    			\quad 0\qquad otherwise\\
+    		\end{cases}
+    	\end{equation}		
+    \end{Large}
+	\begin{Large}
+		\begin{equation}
+			F(x;\lambda)=\begin{cases}
+				0\qquad x<0\\
+				1-e^{-\lambda x}\quad x\geqslant 0\\
+			\end{cases}
+		\end{equation}		
+	\end{Large}
+	\subsection{Gamma distribution}
+	\begin{LARGE}
+		\begin{equation}
+			f(x;n,p)=\begin{cases}
+			\frac{1}{\beta^\alpha \varGamma(\alpha) }x^{\alpha-1}e^{\frac{-x}{\beta}}\qquad x\geqslant 0\\
+				\quad 0\qquad x< 0\\
+			\end{cases}
+		\end{equation}		
+	\end{LARGE}
+	\begin{Large}
+		\begin{equation}
+			E(X) =\mu =\alpha\beta
+		\end{equation}		
+	\end{Large}
+	\begin{Large}
+		\begin{equation}
+			V(X) =\sigma^2 =\alpha\beta^2
+		\end{equation}		
+	\end{Large}
+	~\\
+	~\\
+	~\\
+	\subsection{Chi-squared distribution}
+	\begin{LARGE}
+		\begin{equation}
+			f(x;v)=\begin{cases}
+				\frac{1}{2^{\tiny{\frac{v}{2}}} \varGamma(\frac{v}{2}) }x^{\tiny{\frac{v}{2}-1}}e^{\tiny{\frac{-x}{2}}} \qquad x\geqslant 0\\
+				\quad 0\qquad x< 0\\
+			\end{cases}
+		\end{equation}		
+	\end{LARGE}
+	\subsection{Weibull distribution}
+	~\\
+	\subsection{Lognormal distribution}
+	~\\
+	\subsection{Beta distribution}
+	~\\
+	\section{Join Probability}
+	~\\
+	\section{Point Estimation}
+	\subsection{Binomial rv unbiased estimator}
+	\begin{Large}
+		\begin{equation}
+			E(\hat{p})=E(\frac{X}{n})=\frac{1}{n}E(X)=\frac{1}{n}(np)=p
+		\end{equation}		
+	\end{Large}
+	\subsection{Uniform(Max) rv unbiased estimator}
+	\begin{Large}
+		\begin{equation}
+			\hat{\theta}_1=\frac{n+1}{n}\max(X_1,\cdots,X_n)
+		\end{equation}	
+		\begin{equation}
+			\hat{\theta}_2=2\overline{X}
+		\end{equation}	
+    \end{Large}	
+	\subsection{Normal rv unbiased estimator}
+	\begin{Large}
+		\begin{equation}
+			\hat{\mu} = \overline{X}
+		\end{equation}		
+	\end{Large}
+	\begin{Large}
+		\begin{equation}
+			\hat{\sigma}^2 = \frac{\sum(X_i-\overline{X})^2}{n}\overline{X}
+		\end{equation}		
+	\end{Large}
+	\section{CI}
+	\subsection{Levels of Confidence}
+	\begin{Large}
+		\begin{equation}
+		\left(\overline{x}-z_{\frac{\alpha}{2}}\cdot\frac{\sigma}{\sqrt{n}},\quad \overline{x}+z_{\frac{\alpha}{2}}\cdot\frac{\sigma}{\sqrt{n}}\right)
+		\end{equation}		
+	\end{Large}
+~\\
+~\\
+~\\
+~\\
+~\\
+	\subsection{Chose of Sample Size}
+	\begin{Large}
+	\begin{equation}
+		n=\left(2z_{\frac{\alpha}{2}}\cdot\frac{\sigma}{w}\right)^2
+	\end{equation}
+	\end{Large}
+	\subsection{Large-Sample CI for $\mu$}		
+	\begin{Large}
+		\begin{equation}
+		Z=\frac{\overline{X}-\mu}{\frac{S}{\sqrt{n}}}
+		\end{equation}
+	\end{Large}
+	\begin{Large}
+		\begin{equation}
+		\overline{x}\pm z_{\frac{\alpha}{2}}\cdot\frac{s}{\sqrt{n}}
+		\end{equation}
+	\end{Large}
+	\subsection{Large-Sample CI for Population Proportion}
+	\begin{LARGE}
+		\begin{equation}
+			\frac{\hat{p}+\frac{z^2_{\alpha/2}}{2n}-z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}+\frac{z^2_{\alpha/2}}{4n^2}}}{1+\frac{z^2_{\alpha/2}}{n}} 
+		\end{equation}
+	\end{LARGE}
+	\begin{LARGE}
+		\begin{equation}
+		 \frac{\hat{p}+\frac{z^2_{\alpha/2}}{2n}+z_{\alpha/2}\sqrt{\frac{\hat{p}\hat{q}}{n}+\frac{z^2_{\alpha/2}}{4n^2}}}{1+\frac{z^2_{\alpha/2}}{n}}
+		\end{equation}
+	\end{LARGE}
+~\\
+~\\
+~\\
+~\\
+~\\
+	\subsection{ CI for Normal Population Proportion}
+	\begin{Large}
+		\begin{equation}
+			T=\frac{\overline{X}-\mu}{\frac{S}{\sqrt{n}}}
+		\end{equation}
+	\end{Large}
+	\begin{Large}
+	\begin{equation}
+		\left(\overline{x}-t_{\frac{\alpha}{2},n-1}\cdot\frac{\sigma}{\sqrt{n}},\quad \overline{x}+z_{\frac{\alpha}{2},n-1}\cdot\frac{\sigma}{\sqrt{n}}\right)
+	\end{equation}		
+	\end{Large}
+~\\
+~\\
+	\subsection{ PI}
+	\begin{Large}
+		\begin{equation}
+			\overline{x}\pm t_{\frac{\alpha}{2},n-1}\cdot s\sqrt{1+\frac{1}{n}}
+		\end{equation}
+	~\\		
+	\end{Large}
+	\subsection{ Tolerance Intervals}
+	\begin{Large}
+		\begin{equation}
+			\overline{x}\pm \mathrm{(tolerance\  critical\ value)}\cdot s
+		\end{equation}
+	\end{Large}
+	\subsection{ CI for V(x)}
+	\begin{Large}
+		\begin{equation}
+		\frac{(n-1)S^2}{\sigma^2}=\frac{\sum(X_i-\overline{X})^2}{\sigma^2}
+		\end{equation}
+	\end{Large}
+	~\\	
+	~\\
+	~\\
+	\begin{Large}
+	\begin{equation}
+		\frac{(n-1)S^2}{\chi^2_{\alpha/2,n-1}}<\sigma^2<\frac{(n-1)S^2}{\chi^2_{1-\alpha/2,n-1}}
+	\end{equation}
+	\end{Large}
+	\section{Test of Hypotheses Based on a Single Sample}
+	\subsection{A Normal Population Distribution with Known $\sigma$}
+	Test statistic:
+	\begin{Large}
+	$$Z = \frac{\overline{X}-\mu_0}{\sigma/\sqrt n}$$
+	
+	$$\varPhi\left(z_\alpha+\frac{\mu_0-\mu'}{\sigma/\sqrt n}\right)$$
+	~\\		
+	$$1-\varPhi\left(-z_\alpha+\frac{\mu_0-\mu'}{\sigma/\sqrt n}\right)$$
+	~\\		
+	$$\varPhi\left(z_\alpha+\frac{\mu_0-\mu'}{\sigma/\sqrt n}\right)-\varPhi\left(-z_\alpha+\frac{\mu_0-\mu'}{\sigma/\sqrt n}\right)$$
+	$$n=\begin{cases}
+		\left[\frac{\sigma(z_\alpha+z_\beta)}{\mu_0-\mu'}\right]^2\\
+        ~\\
+		\left[\frac{\sigma(z_{\alpha/2}+z_\beta)}{\mu_0-\mu'}\right]^2\\
+	\end{cases}$$
+	\end{Large}
+	\subsection{Large-Sample Test}
+	Test statistic:
+	\begin{Large}
+		$$Z = \frac{\overline{X}-\mu_{\scriptscriptstyle 0}}{S/\sqrt n}$$
+	\end{Large}
+	\subsection{One-Sample t Test}
+	Test statistic:
+	\begin{Large}
+		$$t = \frac{\overline{X}-\mu_{\scriptscriptstyle 0}}{s/\sqrt n}$$
+	\end{Large}
+	\subsection{Population proportion}
+	Test statistic:
+	\begin{Large}
+		$$Z = \frac{\hat{p}-p_{\scriptscriptstyle 0}}{\sqrt{ p_{\scriptscriptstyle 0}(1-p_{\scriptscriptstyle 0})/n}}$$
+		
+		$$\varPhi\left[\frac{p_{\scriptscriptstyle 0}-p^{\scriptscriptstyle '}+z_\alpha\sqrt{ p_{\scriptscriptstyle 0}(1-p_{\scriptscriptstyle 0})/n}}{\sqrt{ p^{\scriptscriptstyle '}(1-p^{\scriptscriptstyle '})/n}}\right]$$
+		~\\		
+		$$1-\varPhi\left[\frac{p_{\scriptscriptstyle 0}-p^{\scriptscriptstyle '}-z_\alpha\sqrt{ p_{\scriptscriptstyle 0}(1-p_{\scriptscriptstyle 0})/n}}{\sqrt{ p^{\scriptscriptstyle '}(1-p^{\scriptscriptstyle '})/n}}\right]$$
+		~\\		
+		$$\varPhi\left[\frac{p_{\scriptscriptstyle 0}-p^{\scriptscriptstyle '}+z_{\alpha/2}\sqrt{ p_{\scriptscriptstyle 0}(1-p_{\scriptscriptstyle 0})/n}}{\sqrt{ p^{\scriptscriptstyle '}(1-p^{\scriptscriptstyle '})/n}}\right]
+		-\varPhi\left[\frac{p_{\scriptscriptstyle 0}-p^{\scriptscriptstyle '}-z_{\alpha/2}\sqrt{ p_{\scriptscriptstyle 0}(1-p_{\scriptscriptstyle 0})/n}}{\sqrt{ p^{\scriptscriptstyle '}(1-p^{\scriptscriptstyle '})/n}}\right]$$
+		~\\
+		$$n=\begin{cases}
+			\left[\frac{z_\alpha\sqrt{p_{\scriptscriptstyle 0}(1-p_{\scriptscriptstyle 0})}+z_\beta\sqrt{p^{\scriptscriptstyle '}(1-p^{\scriptscriptstyle '})}}{p^{\scriptscriptstyle '}-p_{\scriptscriptstyle 0}}\right]^2\\
+			~\\
+			\left[\frac{z_{\alpha/2}\sqrt{p_{\scriptscriptstyle 0}(1-p_{\scriptscriptstyle 0})}+z_\beta\sqrt{p^{\scriptscriptstyle '}(1-p^{\scriptscriptstyle '})}}{p^{\scriptscriptstyle '}-p_{\scriptscriptstyle 0}}\right]^2\\
+		\end{cases}$$
+	\end{Large}
+	\section{Inferences Based on Two Samples}
+	\subsection{z Tests and CI for a difference between Two popuplation means}
+	Test statistic:
+	\begin{Large}
+		$$z = \frac{\overline{x}-\overline{y}-\Delta_0}{\sqrt{\frac{\sigma_1^2}{m}+\frac{\sigma_2^2}{n}}}$$
+		~\\
+		$$\varPhi\left(z_\alpha-\frac{\Delta^{'}-\Delta_0}{\sigma}\right)$$
+		~\\		
+		$$1-\varPhi\left(-z_\alpha-\frac{\Delta^{'}-\Delta_0}{\sigma}\right)$$
+		~\\		
+		$$\varPhi\left(z_{\alpha/2}-\frac{\Delta^{'}-\Delta_0}{\sigma}\right)-\varPhi\left(-z_{\alpha/2}-\frac{\Delta^{'}-\Delta_0}{\sigma}\right)$$
+	    ~\\
+		$$\sigma=\sigma_{\overline{x}-\overline{y}}=\sqrt{\frac{\sigma_1^2}{m}+\frac{\sigma_2^2}{n}}$$
+		
+	\end{Large}
+	\subsection{Large-Sample Test}
+	Test statistic:
+	\begin{Large}
+		$$z = \frac{\overline{x}-\overline{y}-\Delta_0}{\sqrt{\frac{s_1^2}{m}+\frac{s_2^2}{n}}}$$
+	\end{Large}
+	\subsection{CI for $\mu_1-\mu_2$}
+	Test statistic:
+	\begin{Large}
+		$$z = \overline{x}-\overline{y}\pm z_{\alpha/2}\sqrt{\frac{s_1^2}{m}+\frac{s_2^2}{n}}$$
+	\end{Large}
+	\subsection{Two-Sample t Tests and CI }
+	Test statistic:
+	\begin{Large}
+		$$T = \frac{\overline{X}-\overline{Y}-(\mu_1-\mu_2)}{\sqrt{\frac{S_1^2}{m}+\frac{S_2^2}{n}}}$$
+		~\\
+		$$t = \frac{\overline{x}-\overline{y}-\Delta_0}{\sqrt{\frac{s_1^2}{m}+\frac{s_2^2}{n}}}$$
+		~\\
+		$$v = \frac{\left(\frac{s_1^2}{m}+\frac{s_2^2}{n}\right)^2}{\frac{\left(s_1^2 / m\right)^2}{m-1}+\frac{\left(s_2^2 / n\right)^2}{n-1}}$$
+	    ~\\
+	    $$t = \overline{x}-\overline{y}\pm t_{\alpha/2,v}\sqrt{\frac{s_1^2}{m}+\frac{s_2^2}{n}}$$
+		
+	\end{Large}
+\end{document}
